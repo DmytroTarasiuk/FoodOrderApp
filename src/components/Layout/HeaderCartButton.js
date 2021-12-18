@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import classes from './HeaderCartButton.module.css'
 import { FaCartPlus } from 'react-icons/fa'
-import CartContext from '../../store/cart-ctx'
+import CartContext from '../../store/cart-context'
 
 const HeaderCartButton = props => {
     const [btnIsOn, setBtnIsOn] = useState(false)
@@ -29,6 +29,7 @@ const HeaderCartButton = props => {
             clearTimeout(timer)
         }
     }, [items])
+    
     return (
         <button className={btnClasses} onClick={props.onClick}>
             <span className={classes.icon}><FaCartPlus /></span>
