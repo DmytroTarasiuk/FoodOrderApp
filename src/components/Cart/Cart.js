@@ -59,7 +59,7 @@ const Cart = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button className={classes['button--alt']} onClick={props.onClose}>
+      <button className={classes['button--alt']} onClick={props.onHideCart}>
         Close
       </button>
       {hasItems && (
@@ -71,17 +71,17 @@ const Cart = (props) => {
   );
 
   const cartModalContent = (
-    <React.Fragment>
+    <div className={classes.cartModal}>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+        <Checkout onConfirm={submitOrderHandler} onCancel={props.onHideCart} />
       )}
       {!isCheckout && modalActions}
-    </React.Fragment>
+    </div>
   );
 
   const isSubmittingModalContent = <p>Sending order data...</p>;
@@ -90,7 +90,7 @@ const Cart = (props) => {
     <React.Fragment>
       <p>Successfully sent the order!</p>
       <div className={classes.actions}>
-      <button className={classes.button} onClick={props.onClose}>
+      <button className={classes.button} onClick={props.onHideCart}>
         Close
       </button>
     </div>
@@ -98,7 +98,7 @@ const Cart = (props) => {
   );
 
   return (
-    <Modal onClose={props.onClose}>
+    <Modal onClose={props.onCloseCart}>
       {!isSubmitting && !didSubmit && cartModalContent}
       {isSubmitting && isSubmittingModalContent}
       {!isSubmitting && didSubmit && didSubmitModalContent}
